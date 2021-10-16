@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGWorldTracker", "RPGWorldTracker\RPGWorldTracker.csproj", "{A910FF5D-F509-40D8-AABD-8C480026486B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A910FF5D-F509-40D8-AABD-8C480026486B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A910FF5D-F509-40D8-AABD-8C480026486B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A910FF5D-F509-40D8-AABD-8C480026486B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A910FF5D-F509-40D8-AABD-8C480026486B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D81E5AE0-DCB4-4E3F-A9AD-066356AFD74D}
+	EndGlobalSection
+EndGlobal

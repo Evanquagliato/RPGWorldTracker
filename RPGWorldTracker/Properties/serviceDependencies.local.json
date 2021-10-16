@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql1": {
+      "type": "mssql.onprem",
+      "connectionId": "DefaultConnection",
+      "secretStore": "LocalSecretsFile"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "ConnectionStrings:RPGWorldTrackerContext"
+    }
+  }
+}

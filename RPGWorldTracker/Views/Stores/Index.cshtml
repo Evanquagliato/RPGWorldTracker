@@ -1,0 +1,77 @@
+﻿@model IEnumerable<RPGWorldTracker.Models.Store>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfStore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoodsForSale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExteriorDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InteriorDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CampaginId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfStore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoodsForSale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExteriorDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InteriorDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Town.TownId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaginId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StoreId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StoreId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StoreId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

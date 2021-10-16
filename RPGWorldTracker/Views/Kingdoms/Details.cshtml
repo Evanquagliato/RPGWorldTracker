@@ -1,0 +1,78 @@
+﻿@model RPGWorldTracker.Models.Kingdom
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Kingdom</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Geography)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Geography)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ResourcesEconomy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ResourcesEconomy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Culture)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Culture)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Government)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Government)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HistoricalEvents)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HistoricalEvents)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Threats)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Threats)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Landmarks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Landmarks)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OtherDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OtherDetails)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Campaign)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Campaign.CampaignId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.KingdomId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

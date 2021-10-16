@@ -1,0 +1,72 @@
+﻿@model RPGWorldTracker.Models.Character
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Character</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Race)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Race)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Profession)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Profession)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Appearance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Appearance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Background)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Background)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.OtherDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.OtherDetails)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Campaign)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Campaign.CampaignId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Job)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Job.StoreId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Home)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Home.HomeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CharacterId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

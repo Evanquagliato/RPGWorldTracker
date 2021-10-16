@@ -1,0 +1,101 @@
+﻿@model IEnumerable<RPGWorldTracker.Models.Town>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Geography)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResourcesEconomy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Culture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Government)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HistoricalEvents)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Threats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Defenses)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Landmarks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherDetails)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kingdom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Campaign)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Geography)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResourcesEconomy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Culture)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Government)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HistoricalEvents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Threats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Defenses)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Landmarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherDetails)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kingdom.KingdomId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Campaign.CampaignId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TownId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TownId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TownId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
