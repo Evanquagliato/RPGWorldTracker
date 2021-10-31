@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RPGWorldTracker.Data;
 
 namespace RPGWorldTracker.Migrations
 {
     [DbContext(typeof(RPGWorldTrackerContext))]
-    partial class RPGWorldTrackerContextModelSnapshot : ModelSnapshot
+    [Migration("20211031205213_update-buildings")]
+    partial class updatebuildings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,7 +106,10 @@ namespace RPGWorldTracker.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CampaignId")
+                    b.Property<int>("CampaginId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
                     b.Property<string>("ExteriorDesc")
@@ -185,7 +190,10 @@ namespace RPGWorldTracker.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CampaignId")
+                    b.Property<int>("CampaginId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CampaignId")
                         .HasColumnType("int");
 
                     b.Property<string>("ExteriorDesc")
@@ -327,9 +335,7 @@ namespace RPGWorldTracker.Migrations
                 {
                     b.HasOne("RPGWorldTracker.Models.Campaign", "Campaign")
                         .WithMany()
-                        .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CampaignId");
 
                     b.HasOne("RPGWorldTracker.Models.Town", "Town")
                         .WithMany()
@@ -355,9 +361,7 @@ namespace RPGWorldTracker.Migrations
                 {
                     b.HasOne("RPGWorldTracker.Models.Campaign", "Campaign")
                         .WithMany()
-                        .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CampaignId");
 
                     b.HasOne("RPGWorldTracker.Models.Town", "Town")
                         .WithMany()

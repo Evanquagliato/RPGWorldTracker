@@ -18,6 +18,7 @@ namespace RPGWorldTracker
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
+
 		}
 
 		public IConfiguration Configuration { get; }
@@ -26,9 +27,10 @@ namespace RPGWorldTracker
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
+			services.AddRazorPages().AddRazorRuntimeCompilation();
 
-		    services.AddDbContext<RPGWorldTrackerContext>(options =>
-		            options.UseSqlServer(Configuration.GetConnectionString("RPGWorldTrackerContext")));
+			services.AddDbContext<RPGWorldTrackerContext>(options =>
+				  options.UseSqlServer(Configuration.GetConnectionString("RPGWorldTrackerContext")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

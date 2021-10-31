@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 
 namespace RPGWorldTracker.Models
 {
@@ -18,7 +18,7 @@ namespace RPGWorldTracker.Models
 		public Town Town { get; set; }
 
 		[ForeignKey("CampaignId")]
-		public int CampaginId { get; set; }
+		public int CampaignId { get; set; }
 		public Campaign Campaign { get; set; }
 	}
 }

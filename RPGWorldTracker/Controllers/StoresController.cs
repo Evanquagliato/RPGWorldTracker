@@ -22,7 +22,7 @@ namespace RPGWorldTracker.Controllers
         // GET: Stores
         public async Task<IActionResult> Index()
         {
-            var rPGWorldTrackerContext = _context.Store.Include(s => s.Town);
+            var rPGWorldTrackerContext = _context.Store.Include(s => s.Campaign).Include(s => s.Town);
             return View(await rPGWorldTrackerContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace RPGWorldTracker.Controllers
             }
 
             var store = await _context.Store
+                .Include(s => s.Campaign)
                 .Include(s => s.Town)
                 .FirstOrDefaultAsync(m => m.StoreId == id);
             if (store == null)
@@ -48,7 +49,8 @@ namespace RPGWorldTracker.Controllers
         // GET: Stores/Create
         public IActionResult Create()
         {
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId");
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId");
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace RPGWorldTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StoreId,TypeOfStore,GoodsForSale,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaginId")] Store store)
+        public async Task<IActionResult> Create([Bind("StoreId,TypeOfStore,GoodsForSale,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaignId")] Store store)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +67,8 @@ namespace RPGWorldTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId", store.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", store.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", store.TownId);
             return View(store);
         }
 
@@ -82,7 +85,8 @@ namespace RPGWorldTracker.Controllers
             {
                 return NotFound();
             }
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId", store.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", store.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", store.TownId);
             return View(store);
         }
 
@@ -91,7 +95,7 @@ namespace RPGWorldTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StoreId,TypeOfStore,GoodsForSale,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaginId")] Store store)
+        public async Task<IActionResult> Edit(int id, [Bind("StoreId,TypeOfStore,GoodsForSale,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaignId")] Store store)
         {
             if (id != store.StoreId)
             {
@@ -118,7 +122,8 @@ namespace RPGWorldTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId", store.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", store.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", store.TownId);
             return View(store);
         }
 
@@ -131,6 +136,7 @@ namespace RPGWorldTracker.Controllers
             }
 
             var store = await _context.Store
+                .Include(s => s.Campaign)
                 .Include(s => s.Town)
                 .FirstOrDefaultAsync(m => m.StoreId == id);
             if (store == null)

@@ -22,7 +22,7 @@ namespace RPGWorldTracker.Controllers
         // GET: Homes
         public async Task<IActionResult> Index()
         {
-            var rPGWorldTrackerContext = _context.Home.Include(h => h.Town);
+            var rPGWorldTrackerContext = _context.Home.Include(h => h.Campaign).Include(h => h.Town);
             return View(await rPGWorldTrackerContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace RPGWorldTracker.Controllers
             }
 
             var home = await _context.Home
+                .Include(h => h.Campaign)
                 .Include(h => h.Town)
                 .FirstOrDefaultAsync(m => m.HomeId == id);
             if (home == null)
@@ -48,7 +49,8 @@ namespace RPGWorldTracker.Controllers
         // GET: Homes/Create
         public IActionResult Create()
         {
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId");
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId");
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId");
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace RPGWorldTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("HomeId,WealthLevel,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaginId")] Home home)
+        public async Task<IActionResult> Create([Bind("HomeId,WealthLevel,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaignId")] Home home)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +67,8 @@ namespace RPGWorldTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId", home.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", home.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", home.TownId);
             return View(home);
         }
 
@@ -82,7 +85,8 @@ namespace RPGWorldTracker.Controllers
             {
                 return NotFound();
             }
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId", home.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", home.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", home.TownId);
             return View(home);
         }
 
@@ -91,7 +95,7 @@ namespace RPGWorldTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HomeId,WealthLevel,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaginId")] Home home)
+        public async Task<IActionResult> Edit(int id, [Bind("HomeId,WealthLevel,Name,ExteriorDesc,InteriorDesc,OtherDetails,TownId,CampaignId")] Home home)
         {
             if (id != home.HomeId)
             {
@@ -118,7 +122,8 @@ namespace RPGWorldTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TownId"] = new SelectList(_context.Set<Town>(), "TownId", "TownId", home.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", home.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", home.TownId);
             return View(home);
         }
 
@@ -131,6 +136,7 @@ namespace RPGWorldTracker.Controllers
             }
 
             var home = await _context.Home
+                .Include(h => h.Campaign)
                 .Include(h => h.Town)
                 .FirstOrDefaultAsync(m => m.HomeId == id);
             if (home == null)
