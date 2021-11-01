@@ -43,41 +43,42 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Race)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profession)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Appearance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Background)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OtherDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Campaign.CampaignId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Job.StoreId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Home.HomeId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CharacterId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CharacterId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CharacterId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Race)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profession)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Appearance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Background)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Campaign.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Job.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Home.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CharacterId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CharacterId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CharacterId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

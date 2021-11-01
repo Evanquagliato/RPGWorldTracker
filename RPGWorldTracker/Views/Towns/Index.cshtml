@@ -52,50 +52,51 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Geography)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ResourcesEconomy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Culture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Government)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HistoricalEvents)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Threats)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Defenses)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Landmarks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OtherDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Kingdom.KingdomId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Campaign.CampaignId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TownId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TownId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TownId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Geography)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ResourcesEconomy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Culture)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Government)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HistoricalEvents)
+                </td>
+                 <td>
+                    @Html.DisplayFor(modelItem => item.Threats)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Defenses)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Landmarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OtherDetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kingdom.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Campaign.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TownId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TownId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TownId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

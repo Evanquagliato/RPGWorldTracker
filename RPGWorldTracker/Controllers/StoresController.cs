@@ -49,8 +49,8 @@ namespace RPGWorldTracker.Controllers
         // GET: Stores/Create
         public IActionResult Create()
         {
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId");
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId");
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name");
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace RPGWorldTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", store.CampaignId);
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", store.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", store.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name", store.TownId);
             return View(store);
         }
 
@@ -85,8 +85,8 @@ namespace RPGWorldTracker.Controllers
             {
                 return NotFound();
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", store.CampaignId);
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", store.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", store.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name", store.TownId);
             return View(store);
         }
 
@@ -122,8 +122,8 @@ namespace RPGWorldTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", store.CampaignId);
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", store.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", store.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name", store.TownId);
             return View(store);
         }
 

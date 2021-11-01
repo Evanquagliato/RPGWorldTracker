@@ -43,12 +43,12 @@
                 <span asp-validation-for="OtherDetails" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TownId" class="control-label"></label>
-                <select asp-for="TownId" class ="form-control" asp-items="ViewBag.TownId"></select>
+                <label asp-for="TownId" class="control-label">Town</label>
+                <select asp-for="TownId" class="form-control" asp-items="ViewBag.TownId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="CampaignId" class="control-label"></label>
-                <select asp-for="CampaignId" class ="form-control" asp-items="ViewBag.CampaignId"></select>
+                <label asp-for="CampaignId" class="control-label">Campaign</label>
+                <select asp-for="CampaignId" class="form-control" asp-items="ViewBag.CampaignId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -62,5 +62,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

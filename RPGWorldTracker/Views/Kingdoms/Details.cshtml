@@ -1,4 +1,4 @@
-﻿@model RPGWorldTracker.Models.Kingdom
+﻿@model RPGWorldTracker.ViewModels.KingdomsViewModel
 
 @{
 	ViewData["Title"] = "Details";
@@ -9,70 +9,83 @@
 <div>
 	<h4>Kingdom</h4>
 	<hr />
-	<dl class="row">
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Name)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Name)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Geography)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Geography)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.ResourcesEconomy)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.ResourcesEconomy)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Culture)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Culture)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Government)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Government)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.HistoricalEvents)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.HistoricalEvents)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Threats)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Threats)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Landmarks)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Landmarks)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.OtherDetails)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.OtherDetails)
-		</dd>
-		<dt class="col-sm-2">
-			@Html.DisplayNameFor(model => model.Campaign)
-		</dt>
-		<dd class="col-sm-10">
-			@Html.DisplayFor(model => model.Campaign.CampaignId)
-		</dd>
-	</dl>
+	<div class="col-9">
+		<dl class="row">
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Name)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Name)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Geography)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Geography)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.ResourcesEconomy)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.ResourcesEconomy)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Culture)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Culture)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Government)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Government)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.HistoricalEvents)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.HistoricalEvents)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Threats)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Threats)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Landmarks)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Landmarks)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.OtherDetails)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.OtherDetails)
+			</dd>
+			<dt class="col-sm-2">
+				@Html.DisplayNameFor(model => model.Kingdom.Campaign)
+			</dt>
+			<dd class="col-sm-10">
+				@Html.DisplayFor(model => model.Kingdom.Campaign.Name)
+			</dd>
+		</dl>
+	</div>
+	<div class="col-3">
+		@foreach (var item in Model.Towns)
+		{
+			<table class="table table-hover table-sm">
+				<tr>
+					<td><a class="" asp-controller="Towns" asp-action="Details"
+						asp-route-id="@item.TownId">@Html.DisplayFor(modelItem => item.Name)</a></td>
+				</tr>
+			</table>
+		}
+	</div>
 </div>
 <div>
-	<a asp-action="Edit" asp-route-id="@Model.KingdomId">Edit</a> |
+	<a asp-action="Edit" asp-route-id="@Model.Kingdom.KingdomId">Edit</a> |
 	<a asp-action="Index">Back to List</a>
 </div>

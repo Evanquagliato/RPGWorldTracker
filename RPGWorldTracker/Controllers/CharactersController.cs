@@ -50,9 +50,9 @@ namespace RPGWorldTracker.Controllers
         // GET: Characters/Create
         public IActionResult Create()
         {
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId");
-            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "HomeId");
-            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "StoreId");
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name");
+            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "Name");
+            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "Name");
             return View();
         }
 
@@ -69,9 +69,9 @@ namespace RPGWorldTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", character.CampaignId);
-            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "HomeId", character.HomeId);
-            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "StoreId", character.JobId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", character.CampaignId);
+            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "Name", character.HomeId);
+            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "Name", character.JobId);
             return View(character);
         }
 
@@ -88,9 +88,9 @@ namespace RPGWorldTracker.Controllers
             {
                 return NotFound();
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", character.CampaignId);
-            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "HomeId", character.HomeId);
-            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "StoreId", character.JobId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", character.CampaignId);
+            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "Name", character.HomeId);
+            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "Name", character.JobId);
             return View(character);
         }
 
@@ -126,9 +126,9 @@ namespace RPGWorldTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", character.CampaignId);
-            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "HomeId", character.HomeId);
-            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "StoreId", character.JobId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", character.CampaignId);
+            ViewData["HomeId"] = new SelectList(_context.Set<Home>(), "HomeId", "Name", character.HomeId);
+            ViewData["JobId"] = new SelectList(_context.Set<Store>(), "StoreId", "Name", character.JobId);
             return View(character);
         }
 

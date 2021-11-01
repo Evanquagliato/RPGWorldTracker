@@ -49,8 +49,8 @@ namespace RPGWorldTracker.Controllers
         // GET: Homes/Create
         public IActionResult Create()
         {
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId");
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId");
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name");
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name");
             return View();
         }
 
@@ -67,8 +67,8 @@ namespace RPGWorldTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", home.CampaignId);
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", home.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", home.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name", home.TownId);
             return View(home);
         }
 
@@ -122,8 +122,8 @@ namespace RPGWorldTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "CampaignId", home.CampaignId);
-            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "TownId", home.TownId);
+            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", home.CampaignId);
+            ViewData["TownId"] = new SelectList(_context.Town, "TownId", "Name", home.TownId);
             return View(home);
         }
 
