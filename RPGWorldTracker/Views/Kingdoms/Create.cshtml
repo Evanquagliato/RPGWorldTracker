@@ -1,77 +1,70 @@
 ﻿@model RPGWorldTracker.Models.Kingdom
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create a new kingdom</h1>
 
-<h4>Kingdom</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Geography" class="control-label"></label>
-                <input asp-for="Geography" class="form-control" />
-                <span asp-validation-for="Geography" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ResourcesEconomy" class="control-label"></label>
-                <input asp-for="ResourcesEconomy" class="form-control" />
-                <span asp-validation-for="ResourcesEconomy" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Culture" class="control-label"></label>
-                <input asp-for="Culture" class="form-control" />
-                <span asp-validation-for="Culture" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Government" class="control-label"></label>
-                <input asp-for="Government" class="form-control" />
-                <span asp-validation-for="Government" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HistoricalEvents" class="control-label"></label>
-                <input asp-for="HistoricalEvents" class="form-control" />
-                <span asp-validation-for="HistoricalEvents" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Threats" class="control-label"></label>
-                <input asp-for="Threats" class="form-control" />
-                <span asp-validation-for="Threats" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Landmarks" class="control-label"></label>
-                <input asp-for="Landmarks" class="form-control" />
-                <span asp-validation-for="Landmarks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OtherDetails" class="control-label"></label>
-                <input asp-for="OtherDetails" class="form-control" />
-                <span asp-validation-for="OtherDetails" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CampaignId" class="control-label">Campaign</label>
-                <select asp-for="CampaignId" class="form-control" asp-items="ViewBag.CampaignId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+	<div class="col-md-4">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Geography" class="control-label"></label>
+				<textarea asp-for="Geography" class="form-control"></textarea>
+				<span asp-validation-for="Geography" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ResourcesEconomy" class="control-label">Main resources or economy</label>
+				<textarea asp-for="ResourcesEconomy" class="form-control"></textarea>
+				<span asp-validation-for="ResourcesEconomy" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Culture" class="control-label"></label>
+				<textarea asp-for="Culture" class="form-control"></textarea>
+				<span asp-validation-for="Culture" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Government" class="control-label"></label>
+				<textarea asp-for="Government" class="form-control"></textarea>
+				<span asp-validation-for="Government" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="HistoricalEvents" class="control-label">Important historical events</label>
+				<textarea asp-for="HistoricalEvents" class="form-control"></textarea>
+				<span asp-validation-for="HistoricalEvents" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Threats" class="control-label"></label>
+				<textarea asp-for="Threats" class="form-control"></textarea>
+				<span asp-validation-for="Threats" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Landmarks" class="control-label"></label>
+				<textarea asp-for="Landmarks" class="form-control"></textarea>
+				<span asp-validation-for="Landmarks" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="OtherDetails" class="control-label">Other details</label>
+				<textarea asp-for="OtherDetails" class="form-control"></textarea>
+				<span asp-validation-for="OtherDetails" class="text-danger"></span>
+			</div>
+			<br />
+			<div class="form-group">
+				<input asp-route-campaignId="@Model.CampaignId" type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
-@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

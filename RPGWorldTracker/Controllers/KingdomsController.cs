@@ -11,156 +11,159 @@ using RPGWorldTracker.ViewModels;
 
 namespace RPGWorldTracker.Controllers
 {
-    public class KingdomsController : Controller
-    {
-        private readonly RPGWorldTrackerContext _context;
+	public class KingdomsController : Controller
+	{
+		private readonly RPGWorldTrackerContext _context;
 
-        public KingdomsController(RPGWorldTrackerContext context)
-        {
-            _context = context;
-        }
+		public KingdomsController(RPGWorldTrackerContext context)
+		{
+			_context = context;
+		}
 
-        // GET: Kingdoms
-        public async Task<IActionResult> Index()
-        {
-            var rPGWorldTrackerContext = _context.Kingdom.Include(k => k.Campaign);
-            return View(await rPGWorldTrackerContext.ToListAsync());
-        }
+		// GET: Kingdoms
+		public async Task<IActionResult> Index()
+		{
+			var rPGWorldTrackerContext = _context.Kingdom.Include(k => k.Campaign);
+			return View(await rPGWorldTrackerContext.ToListAsync());
+		}
 
-        // GET: Kingdoms/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var kingdom = await _context.Kingdom
-                .Include(s => s.Campaign)
-                .FirstOrDefaultAsync(m => m.KingdomId == id);
+		// GET: Kingdoms/Details/5
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var kingdom = await _context.Kingdom
+			    .Include(s => s.Campaign)
+			    .FirstOrDefaultAsync(m => m.KingdomId == id);
 
-            var towns = _context.Town.Where(x => x.KingdomId == id).ToList();
+			var towns = _context.Town.Where(x => x.KingdomId == id).ToList();
 
-            // Add the Allies and Enemies here
+			// Add the Allies and Enemies here
 
-            KingdomsViewModel kingdomsViewModel = new KingdomsViewModel()
-            {
-                Kingdom = kingdom,
-                Towns = towns
-            };
+			KingdomsViewModel kingdomsViewModel = new KingdomsViewModel()
+			{
+				Kingdom = kingdom,
+				Towns = towns
+			};
 
-            return View(kingdomsViewModel);
-        }
+			return View(kingdomsViewModel);
+		}
 
-        // GET: Kingdoms/Create
-        public IActionResult Create()
-        {
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name");
-            return View();
-        }
+		// GET: Kingdoms/Create
+		public IActionResult Create(int campaignId)
+		{
+			Kingdom kingdom = new Kingdom();
 
-        // POST: Kingdoms/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KingdomId,Name,Geography,ResourcesEconomy,Culture,Government,HistoricalEvents,Threats,Landmarks,OtherDetails,CampaignId")] Kingdom kingdom)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(kingdom);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", kingdom.CampaignId);
-            return View(kingdom);
-        }
+			kingdom.CampaignId = campaignId;
+			return View(kingdom);
+		}
 
-        // GET: Kingdoms/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+		// POST: Kingdoms/Create
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("KingdomId,Name,Geography,ResourcesEconomy,Culture,Government,HistoricalEvents,Threats,Landmarks,OtherDetails,CampaignId")] Kingdom kingdom, int campaignId)
+		{
+			kingdom.CampaignId = campaignId;
+			if (ModelState.IsValid)
+			{
+				_context.Add(kingdom);
+				await _context.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+			ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", kingdom.CampaignId);
+			return View(kingdom);
+		}
 
-            var kingdom = await _context.Kingdom.FindAsync(id);
-            if (kingdom == null)
-            {
-                return NotFound();
-            }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", kingdom.CampaignId);
-            return View(kingdom);
-        }
+		// GET: Kingdoms/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-        // POST: Kingdoms/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("KingdomId,Name,Geography,ResourcesEconomy,Culture,Government,HistoricalEvents,Threats,Landmarks,OtherDetails,CampaignId")] Kingdom kingdom)
-        {
-            if (id != kingdom.KingdomId)
-            {
-                return NotFound();
-            }
+			var kingdom = await _context.Kingdom.FindAsync(id);
+			if (kingdom == null)
+			{
+				return NotFound();
+			}
+			ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", kingdom.CampaignId);
+			return View(kingdom);
+		}
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(kingdom);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!KingdomExists(kingdom.KingdomId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", kingdom.CampaignId);
-            return View(kingdom);
-        }
+		// POST: Kingdoms/Edit/5
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(int id, [Bind("KingdomId,Name,Geography,ResourcesEconomy,Culture,Government,HistoricalEvents,Threats,Landmarks,OtherDetails,CampaignId")] Kingdom kingdom)
+		{
+			if (id != kingdom.KingdomId)
+			{
+				return NotFound();
+			}
 
-        // GET: Kingdoms/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Update(kingdom);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!KingdomExists(kingdom.KingdomId))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			ViewData["CampaignId"] = new SelectList(_context.Campaign, "CampaignId", "Name", kingdom.CampaignId);
+			return View(kingdom);
+		}
 
-            var kingdom = await _context.Kingdom
-                .Include(k => k.Campaign)
-                .FirstOrDefaultAsync(m => m.KingdomId == id);
-            if (kingdom == null)
-            {
-                return NotFound();
-            }
+		// GET: Kingdoms/Delete/5
+		public async Task<IActionResult> Delete(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-            return View(kingdom);
-        }
+			var kingdom = await _context.Kingdom
+			    .Include(k => k.Campaign)
+			    .FirstOrDefaultAsync(m => m.KingdomId == id);
+			if (kingdom == null)
+			{
+				return NotFound();
+			}
 
-        // POST: Kingdoms/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var kingdom = await _context.Kingdom.FindAsync(id);
-            _context.Kingdom.Remove(kingdom);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+			return View(kingdom);
+		}
 
-        private bool KingdomExists(int id)
-        {
-            return _context.Kingdom.Any(e => e.KingdomId == id);
-        }
-    }
+		// POST: Kingdoms/Delete/5
+		[HttpPost, ActionName("Delete")]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> DeleteConfirmed(int id)
+		{
+			var kingdom = await _context.Kingdom.FindAsync(id);
+			_context.Kingdom.Remove(kingdom);
+			await _context.SaveChangesAsync();
+			return RedirectToAction(nameof(Index));
+		}
+
+		private bool KingdomExists(int id)
+		{
+			return _context.Kingdom.Any(e => e.KingdomId == id);
+		}
+	}
 }

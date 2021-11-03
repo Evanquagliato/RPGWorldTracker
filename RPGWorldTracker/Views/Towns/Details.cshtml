@@ -1,90 +1,122 @@
-﻿@model RPGWorldTracker.Models.Town
+﻿@model RPGWorldTracker.ViewModels.TownsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>
+	@Html.DisplayFor(model => model.Town.Name)
+	<a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@Model.Town.TownId">Edit Town</a>
+
+</h1>
 
 <div>
-    <h4>Town</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Geography)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Geography)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ResourcesEconomy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ResourcesEconomy)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Culture)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Culture)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Government)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Government)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HistoricalEvents)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HistoricalEvents)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Threats)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Threats)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Defenses)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Defenses)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Landmarks)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Landmarks)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OtherDetails)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OtherDetails)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Kingdom)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Kingdom.KingdomId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Campaign)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Campaign.CampaignId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.TownId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+	<div class="row">
+		<div class="col-6 module-border">
+			<h3 class="text-primary">
+				Details about this town
+			</h3>
+			<table class="table table-hover table-sm">
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Geography)</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.Geography)</td>
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">Main Resources</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.ResourcesEconomy)</td>
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Culture)</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.Culture)</td>
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Government)</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.Government)</td>
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">Historical Events</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.HistoricalEvents)</td>
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Threats)</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.Threats)</td>
+
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Landmarks)</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.Landmarks)</td>
+
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">Other Details</td>
+					<td class="col-sm-10">@Html.DisplayFor(model => model.Town.OtherDetails)</td>
+
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Kingdom)</td>
+					<td class="col-sm-10"><a class="text-decoration-none btn btn-outline-primary" asp-controller="Kingdoms" asp-action="Details" asp-route-id="@Model.Town.KingdomId">@Html.DisplayFor(model => model.Town.Kingdom.Name)</a></td>
+
+				</tr>
+				<tr>
+					<td class="col-sm-2 fw-bold">@Html.DisplayNameFor(model => model.Town.Campaign)</td>
+					<td class="col-sm-10"><a class="text-decoration-none btn btn-outline-primary" asp-controller="Campaigns" asp-action="Details" asp-route-id="@Model.Town.CampaignId">@Html.DisplayFor(model => model.Town.Campaign.Name)</a></td>
+
+				</tr>
+			</table>
+
+		</div>
+		<div class="col-6 module-border">
+			<h3 class="text-primary">
+				Characters that live in this town
+				<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Characters">Create New</a>
+			</h3>
+			@foreach (var item in Model.Characters)
+			{
+				<table class="table table-hover table-sm">
+					<tr>
+						<td>
+							<a class="text-decoration-none btn btn-outline-primary" asp-controller="Characters" asp-action="Details"
+							   asp-route-id="@item.CharacterId">@Html.DisplayFor(modelItem => item.Name)</a>
+						</td>
+					</tr>
+				</table>
+			}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 module-border">
+			<h3 class="text-primary">
+				Stores in this town
+				<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Stores">Create New</a>
+			</h3>
+			@foreach (var item in Model.Stores)
+			{
+				<table class="table table-hover table-sm">
+					<tr>
+						<td>
+							<a class="text-decoration-none btn btn-outline-primary" asp-controller="Stores" asp-action="Details"
+							   asp-route-id="@item.StoreId">@Html.DisplayFor(modelItem => item.Name)</a>
+						</td>
+					</tr>
+				</table>
+			}
+		</div>
+		<div class="col-6 module-border">
+			<h3 class="text-primary">
+				Homes in this town
+				<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Homes">Create New</a>
+			</h3>
+			@foreach (var item in Model.Homes)
+			{
+				<table class="table table-hover table-sm">
+					<tr>
+						<td>
+							<a class="text-decoration-none btn btn-outline-primary" asp-controller="Homes" asp-action="Details"
+							   asp-route-id="@item.HomeId">@Html.DisplayFor(modelItem => item.Name)</a>
+						</td>
+					</tr>
+				</table>
+			}
+		</div>
+	</div>
 </div>

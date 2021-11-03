@@ -4,7 +4,11 @@
 	ViewData["Title"] = "Details";
 }
 
-<h1>@Html.DisplayFor(model => model.Campaign.Name)</h1>
+<h1>
+	@Html.DisplayFor(model => model.Campaign.Name)
+	<a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@Model.Campaign.CampaignId">Edit Campagin</a>
+</h1>
+
 <h3>@Html.DisplayFor(model => model.Campaign.Description)</h3>
 
 <div>
@@ -12,63 +16,124 @@
 	<div class="row">
 		<div class="container">
 			<div class="row">
-				<div class="col-6 scroll-table module-border bg-secondary">
-					<p>
-						Kingdoms
-					</p>
-					@foreach (var item in Model.Kingdoms)
-					{
-						<table class="table table-hover table-sm ">
-							<tr>
-								<td><a class="" asp-controller="Kingdoms" asp-action="Details" asp-route-id="@item.KingdomId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-							</tr>
-						</table>
-					}
+				<div class="col-4 module-border">
+					<h3 class="text-primary">
+						Characters
+						<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Characters">Create New</a>
+					</h3>
+					<div class="scroll-table">
+						@foreach (var item in Model.Characters)
+						{
+							<table class="table table-hover table-sm">
+								<tr>
+									<td>
+										<a class="text-decoration-none btn btn-outline-primary btn-sm" asp-controller="Characters" asp-action="Details" asp-route-id="@item.CharacterId">@Html.DisplayFor(modelItem => item.Name)</a>
+									</td>
+									<td>
+										<label class="small">
+											@Html.DisplayFor(modelItem => item.Home.Town.Name)
+										</label>
+									</td>
+								</tr>
+							</table>
+						}
+					</div>
 				</div>
-				<div class="col-6 scroll-table">
-					@foreach (var item in Model.Towns)
-					{
-						<table class="table table-hover table-sm">
-							<tr>
-								<td><a class="" asp-controller="Towns" asp-action="Details" asp-route-id="@item.TownId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-							</tr>
-						</table>
-					}
+
+				<div class="col-4 module-border">
+					<h3 class="text-primary">
+						Homes
+						<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Homes">Create New</a>
+					</h3>
+					<div class="scroll-table">
+						@foreach (var item in Model.Homes)
+						{
+							<table class="table table-hover table-sm">
+								<tr>
+									<td>
+										<a class="text-decoration-none btn btn-outline-primary btn-sm" asp-controller="Homes" asp-action="Details" asp-route-id="@item.HomeId">@Html.DisplayFor(modelItem => item.Name)</a>
+									</td>
+									<td>
+										<label class="small">
+											@Html.DisplayFor(modelItem => item.Town.Name)
+										</label>
+									</td>
+								</tr>
+							</table>
+						}
+					</div>
 				</div>
+
+				<div class="col-4 module-border">
+					<h3 class="text-primary">
+						Stores
+						<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Stores">Create New</a>
+					</h3>
+					<div class="scroll-table">
+						@foreach (var item in Model.Stores)
+						{
+							<table class="table table-hover table-sm ">
+								<tr>
+									<td>
+										<a class="text-decoration-none btn btn-outline-primary btn-sm" asp-controller="Stores" asp-action="Details" asp-route-id="@item.StoreId">@Html.DisplayFor(modelItem => item.Name)</a>
+									</td>
+									<td>
+										<label class="small">
+											@Html.DisplayFor(modelItem => item.Town.Name)
+										</label>
+									</td>
+								</tr>
+							</table>
+						}
+					</div>
+				</div>
+
 			</div>
 			<br />
 			<div class="row">
-				<div class="col-4 scroll-table">
-					@foreach (var item in Model.Stores)
-					{
-						<table class="table table-hover table-sm ">
-							<tr>
-								<td><a class="" asp-controller="Kingdoms" asp-action="Details" asp-route-id="@item.StoreId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-							</tr>
-						</table>
-					}
+				<div class="col-4 module-border">
+					<h3 class="text-primary">
+						Towns
+						<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Towns">Create New</a>
+					</h3>
+					<div class="scroll-table">
+						@foreach (var item in Model.Towns)
+						{
+							<table class="table table-hover table-sm">
+								<tr>
+									<td>
+										<a class="text-decoration-none btn btn-outline-primary btn-sm" asp-controller="Towns" asp-action="Details" asp-route-id="@item.TownId">@Html.DisplayFor(modelItem => item.Name)</a>
+									</td>
+									<td>
+										<label class="small">
+											@Html.DisplayFor(modelItem => item.Kingdom.Name)
+										</label>
+									</td>
+								</tr>
+							</table>
+						}
+					</div>
 				</div>
+				<div class="col-4  module-border">
+					<h3 class="text-primary">
+						Kingdoms
+						<a class="btn btn-outline-success btn-sm" asp-action="Create" asp-controller="Kingdoms" asp-route-campaignId="@Model.Campaign.CampaignId">Create New</a>
+					</h3>
+					<div class="scroll-table">
+						@foreach (var item in Model.Kingdoms)
+						{
+							<table class="table table-hover table-sm ">
+								<tr>
+									<td>
+										<a class="text-decoration-none btn btn-outline-primary btn-sm" asp-controller="Kingdoms" asp-action="Details" asp-route-id="@item.KingdomId">@Html.DisplayFor(modelItem => item.Name)</a>
+									</td>
+								</tr>
+							</table>
+						}
+					</div>
+				</div>
+				<div class="col-1"></div>
 
-				<div class="col-4 scroll-table">
-					@foreach (var item in Model.Homes)
-					{
-						<table class="table table-hover table-sm">
-							<tr>
-								<td><a class="" asp-controller="Towns" asp-action="Details" asp-route-id="@item.HomeId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-							</tr>
-						</table>
-					}
-				</div>
-				<div class="col-4 scroll-table">
-					@foreach (var item in Model.Characters)
-					{
-						<table class="table table-hover table-sm">
-							<tr>
-								<td><a class="" asp-controller="Towns" asp-action="Details" asp-route-id="@item.CharacterId">@Html.DisplayFor(modelItem => item.Name)</a></td>
-							</tr>
-						</table>
-					}
-				</div>
 			</div>
 		</div>
 	</div>
@@ -76,6 +141,7 @@
 </div>
 
 <div>
-	<a asp-action="Edit" asp-route-id="@Model.Campaign.CampaignId">Edit Campagin</a>
-	<a asp-action="Index">Back to List</a>
+	<br />
+
+	<a class="btn btn-outline-primary" asp-action="Index">Back to List</a>
 </div>

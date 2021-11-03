@@ -27,3 +27,8 @@
 	border-radius: 20px 10px 10px 20px;
 	border-right-width: 0px;
 }
+
+.table {
+	table-layout: fixed;
+	word-wrap: break-word;
+}
